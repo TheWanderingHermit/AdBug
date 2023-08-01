@@ -1,6 +1,23 @@
-console.log("Background Script")
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    console.log(msg)
-    console.log(sender)
-    sendResponse("From the background script!")
-})
+chrome.webRequest.onBeforeRequest.addListener((details)=>{
+    console.log(details)
+    const url = details.url
+    const filters = [
+        'googleadservices',
+        'googlesyndication',
+        'g.doubleclick'
+    ]
+    for(const filter of filters) {
+        if(url.indexOf(filter) != -1) {
+            return {
+                cancel: true
+            }
+        }
+    }
+    return {
+        cancel: false,
+    }
+},{
+    urls: [
+        '<all_urls>'
+    ]
+}, ['blocking'])

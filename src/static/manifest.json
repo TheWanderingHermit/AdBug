@@ -1,20 +1,17 @@
 {
-    "manifest_version": 3,
-    "name": "chrome extension",
-    "description": "chrome extension in react!",
+    "manifest_version": 2,
+    "name": "AdBug",
+    "description": "My Personal Ad Debugger",
     "version": "1.0.0",
     "icons": {
         "16": "icon.png",
         "46": "icon.png",
         "128": "icon.png"
     },
-    "action": {
-        "default_popup": "popup.html",
-        "default_title": "chrome extension",
-        "default_icon": "icon.png"
-    },
-    "permissions": ["storage"],
-    "options_page": "options.html",
+    "permissions": [
+        "webRequest", 
+        "webRequestBlocking", 
+        "<all_urls"],
     "background": {
         "service_worker": "background.js"
     },
